@@ -1,46 +1,55 @@
-# 3clipse
-                      ┌───────────────────────────────┐
-                      │   NASA Publications Dataset    │
-                      │   (CSV, OSDR, NASA Task Book)  │
-                      └──────────────┬────────────────┘
-                                     │
-                        [Data Ingestion & Preprocessing]
-                                     │
-                      ┌──────────────▼────────────────┐
-                      │   Text Extraction Pipeline     │
-                      │  (requests, BeautifulSoup)     │
-                      └──────────────┬────────────────┘
-                                     │
-                         [NLP & AI Processing Layer]
-                                     │
- ┌────────────────────────────────────────────────────────────────────┐
- │   Summarization: transformers (BART/T5/GPT)                        │
- │   Entity Extraction: spaCy / scispaCy                              │
- │   Embeddings: sentence-transformers (semantic search)              │
- │   Knowledge Graph: NetworkX / Neo4j                                │
- └────────────────────────────────────────────────────────────────────┘
-                                     │
-                    ┌────────────────┴─────────────────┐
-                    │                                  │
-           [Embeddings DB / FAISS]           [Knowledge Graph Store]
-                    │                                  │
-                    └──────────────┬───────────────────┘
-                                   │
-                            [Backend API Layer]
-                                   │
-               ┌───────────────────┴────────────────────┐
-               │           FastAPI / Flask              │
-               │   (serves endpoints for search, graph, │
-               │    and summaries via JSON)             │
-               └───────────────────┬────────────────────┘
-                                   │
-                          [Frontend Dashboard Layer]
-                                   │
-     ┌──────────────────────────────────────────────────────────────┐
-     │ React / Streamlit Frontend                                   │
-     │  - Search Bar (semantic + keyword)                           │
-     │  - Dynamic Summary Panel                                     │
-     │  - Knowledge Graph Visualization (Plotly/D3.js)              │
-     │  - Topic Trends & Timeline Charts                            │
-     │  - Filters (organism, mission, year, etc.)                   │
-     └──────────────────────────────────────────────────────────────┘
+
+                              ┌────────────────────────────┐
+                              │  NASA Publications Dataset │
+                              │  (CSV, OSDR, Task Book)    │
+                              └──────────────┬─────────────┘
+                                             │
+                          ┌──────────────────┴──────────────────┐
+                          │   DATA INGESTION & PREPROCESSING    │
+                          │  (pandas, requests, BeautifulSoup)  │
+                          └──────────────────┬──────────────────┘
+                                             │
+                 ┌───────────────────────────┴─────────────────────────────┐
+                 │                 NLP & AI PROCESSING LAYER               │
+                 │-------------------------------------------------------- │
+                 │ • Summarization (T5 / BART / GPT)                       │
+                 │ • Entity Extraction (spaCy / scispaCy)                  │
+                 │ • Embeddings for Semantic Search (sentence-transformers)│
+                 │ • Knowledge Graph Construction (NetworkX / Neo4j)       │
+                 └───────────────┬─────────────────────────────────────────┘
+                                 │
+               ┌────────────────┴────────────────┐
+               │                                 │
+     ┌─────────▼───────────┐         ┌───────────▼───────────┐
+     │  EMBEDDINGS STORE   │         │  KNOWLEDGE GRAPH DB   │
+     │  (FAISS / Pinecone) │         │  (NetworkX / Neo4j)   │
+     └─────────┬───────────┘         └───────────┬───────────┘
+               │                                 │
+               └──────────────┬──────────────────┘
+                              │
+                  ┌───────────▼────────────────────┐
+                  │     BACKEND API LAYER          │
+                  │       (FastAPI)                │
+                  │-------------------------       │
+                  │ /search    → semantic search   │
+                  │ /summary   → paper summaries   │
+                  │ /graph     → graph data JSON   │
+                  │ /trends    → topic analytics   │
+                  └───────────┬────────────────────┘
+                              │
+                 ┌────────────▼────────────┐
+                 │   FRONTEND DASHBOARD    │
+                 │ (React / Streamlit UI)  │
+                 │-------------------------│
+                 │ Search Publications     │
+                 │ View AI Summaries       │
+                 │ Explore Knowledge Graph │
+                 │ Visualize Topic Trends  │
+                 │ Filter by Year          │
+                 └────────────┬────────────┘
+                              │
+                  ┌───────────▼────────────┐
+                  │        END USERS       │
+                  │ Scientists, Managers,  │
+                  │ Mission Architects     │
+                  └────────────────────────┘
