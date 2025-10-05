@@ -96,8 +96,8 @@ nasa_bioscience_dashboard/
 │   └── tailwind.config.js
 │
 ├── models/
-│   ├── summarizer/                     # fine-tuned summarization model (optional)
-│   └── embeddings/                     # sentence-transformer model cache
+│   ├── summarizer/                     # Fine-tuned summarization model (optional)
+│   └── embeddings/                     # Sentence-transformer model cache
 │
 ├── notebooks/
 │   ├── 01_data_cleaning.ipynb
@@ -112,5 +112,5 @@ nasa_bioscience_dashboard/
 │   └── test_graph_generation.py
 │
 ├── .env                                # API keys / configs
-├── README.md                           # documentation + usage guide
-└── setup.sh                            # script to install and run project
+├── README.md                           # Documentation + usage guide
+└── setup.sh                            # Script to install and run project
